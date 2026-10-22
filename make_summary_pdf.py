@@ -42,7 +42,7 @@ story = [
     Paragraph("Decoding Citi Bike Demand: The Impact of Weather, Seasonality and Holidays in NYC", title),
     Spacer(1, 3),
     Paragraph("Advanced Data Science &middot; End-Term Project &middot; Pre-Submission Summary", sub),
-    Paragraph("Group [no.] &middot; Harshit Kumar &middot; Ishaan Jatain &middot; Himanshu Yadav", sub),
+    Paragraph("Group 14 &middot; Harshit Kumar &middot; Ishaan Jatain &middot; Himanshu Yadav", sub),
     Paragraph("Code: github.com/harshitkumar24cse/citibike-demand", sub),
     Spacer(1, 6),
     HRFlowable(width="100%", thickness=0.8, color=ACCENT),
