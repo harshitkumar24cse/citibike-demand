@@ -1,0 +1,55 @@
+== 1. Trips ==
+  202504-citibike-tripdata_1.csv: 1,000,000 raw rows
+  202504-citibike-tripdata_2.csv: 1,000,000 raw rows
+  202504-citibike-tripdata_3.csv: 1,000,000 raw rows
+  202504-citibike-tripdata_4.csv: 724,596 raw rows
+  202506-citibike-tripdata_1.csv: 1,000,000 raw rows
+  202506-citibike-tripdata_2.csv: 1,000,000 raw rows
+  202506-citibike-tripdata_3.csv: 1,000,000 raw rows
+  202506-citibike-tripdata_4.csv: 1,000,000 raw rows
+  202506-citibike-tripdata_5.csv: 759,345 raw rows
+  202510-citibike-tripdata_1.csv: 1,000,000 raw rows
+  202510-citibike-tripdata_2.csv: 1,000,000 raw rows
+  202510-citibike-tripdata_3.csv: 1,000,000 raw rows
+  202510-citibike-tripdata_4.csv: 1,000,000 raw rows
+  202510-citibike-tripdata_5.csv: 731,900 raw rows
+  202512-citibike-tripdata_1.csv: 1,000,000 raw rows
+  202512-citibike-tripdata_2.csv: 1,000,000 raw rows
+  202512-citibike-tripdata_3.csv: 91,620 raw rows
+  Raw rows across files: 15,307,461; kept after 25% sampling: 3,826,865
+  Removed: 0 duplicate ride_id, 0 unparseable times, 4,410 durations outside 1-180 min, 361 outside study months
+  Clean trips: 3,822,094
+== 2. Weather ==
+  weather_openmeteo.csv does not cover the study months -> re-downloading
+  Fetching Open-Meteo 2025-04-01 to 2025-04-30
+  Fetching Open-Meteo 2025-06-01 to 2025-06-30
+  Fetching Open-Meteo 2025-10-01 to 2025-10-31
+  Fetching Open-Meteo 2025-12-01 to 2025-12-31
+  Weather: 3,120 Open-Meteo hours -> 2,928 hourly rows; 0 hours had no temperature before gap filling (<=3 h interpolated)
+  Cross-check with NOAA daily (Central Park, 122 days):
+    TMAX: correlation 0.99, mean abs difference 1.1, mean bias (Open-Meteo - NOAA) -0.2
+    TMIN: correlation 0.99, mean abs difference 1.4, mean bias (Open-Meteo - NOAA) -1.0
+    PRCP: correlation 0.89, mean abs difference 1.3, mean bias (Open-Meteo - NOAA) +0.1
+    Wet days (>=1 mm) agree on 92% of days
+== 3. Stations ==
+  Stations: 2,519 rows (live snapshot, not 2025)
+== 4. Holidays ==
+  Holidays: 14 US/NY holidays in 2025
+== Integration ==
+== Quality checks ==
+  Final rows: 3,822,094   columns: 41
+  Trips with no matched weather: 0.00%
+  Trips whose start station is in GBFS snapshot: 96.64%
+  Rows per month: {4: 930120, 6: 1187748, 10: 1181673, 12: 522553}
+  Top missing-value shares:
+    end_station_capacity: 4.53%
+    start_station_capacity: 3.36%
+    distance_km: 0.29%
+    avg_speed_kmh: 0.29%
+    end_lat: 0.25%
+    end_lng: 0.25%
+    end_station_id: 0.25%
+    end_station_name: 0.22%
+Saved ssot.parquet
+
+Download/build date: 2026-10-22

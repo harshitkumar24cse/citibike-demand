@@ -1,0 +1,13 @@
+# Large data: download trips yourself (see README); rebuild ssot with build_ssot.py
+trips/
+ssot.parquet
+ssot.csv.gz
+
+# Course handout (not ours to publish)
+Advanced Data Science.pdf
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+.ipynb_checkpoints/
