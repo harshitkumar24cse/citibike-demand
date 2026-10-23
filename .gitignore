@@ -16,3 +16,6 @@ __pycache__/
 # Local Word drafts
 *.docx
 ~$*
+
+# Downloaded research papers (copyrighted, not ours to publish)
+research papers/

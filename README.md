@@ -21,8 +21,8 @@ Advanced Data Science, end-term project. Team: Harshit Kumar, Ishaan Jatain, Him
 | File | What it does |
 |---|---|
 | `build_ssot.py` | Cleans the trips, joins weather, stations and holidays, and writes `ssot.parquet` and `sources_summary.txt` |
-| `make_summary_pdf.py` | Builds the pre-submission summary PDF |
-| `ADS_Pre_Submission_Summary.pdf` | One-page pre-submission summary |
+| `ADS_Pre_Submission_Group_14.pdf` | One-page pre-submission summary (final) |
+| `make_summary_pdf.py` | Builds an earlier draft of the summary PDF |
 | `sources_summary.txt` | Build log: row counts, removals, weather check, missing values |
 | `ssot_sample_1000.csv` | 1,000 random rows of the final dataset (all 41 columns), to preview it without rebuilding |
 | `weather_openmeteo.csv`, `station_information.json` | Saved copies of the downloaded weather and station data, so rebuilds give the same result |
@@ -42,7 +42,7 @@ Advanced Data Science, end-term project. Team: Harshit Kumar, Ishaan Jatain, Him
    ```bash
    python build_ssot.py
    ```
-4. Optional, rebuild the summary PDF:
+4. Optional, rebuild the earlier draft of the summary PDF:
    ```bash
    python make_summary_pdf.py
    ```
