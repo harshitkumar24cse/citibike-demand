@@ -24,6 +24,7 @@ Advanced Data Science, end-term project. Team: Harshit Kumar, Ishaan Jatain, Him
 | `make_summary_pdf.py` | Builds the pre-submission summary PDF |
 | `ADS_Pre_Submission_Summary.pdf` | One-page pre-submission summary |
 | `sources_summary.txt` | Build log: row counts, removals, weather check, missing values |
+| `ssot_sample_1000.csv` | 1,000 random rows of the final dataset (all 41 columns), to preview it without rebuilding |
 | `weather_openmeteo.csv`, `station_information.json` | Saved copies of the downloaded weather and station data, so rebuilds give the same result |
 
 ## How to run

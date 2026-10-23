@@ -2,6 +2,7 @@
 trips/
 ssot.parquet
 ssot.csv.gz
+ssot.csv
 
 # Course handout (not ours to publish)
 Advanced Data Science.pdf
