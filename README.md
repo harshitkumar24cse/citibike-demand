@@ -26,6 +26,7 @@ Advanced Data Science, end-term project. Team: Harshit Kumar, Ishaan Jatain, Him
 | `sources_summary.txt` | Build log: row counts, removals, weather check, missing values |
 | `ssot_sample_1000.csv` | 1,000 random rows of the final dataset (all 41 columns), to preview it without rebuilding |
 | `weather_openmeteo.csv`, `station_information.json` | Saved copies of the downloaded weather and station data, so rebuilds give the same result |
+| `datasets/` | Each non-trip source as a CSV: raw and New York-time hourly weather, NOAA daily records, stations, 2025 holidays |
 
 ## How to run
 
