@@ -1,0 +1,21 @@
+Training hours: 2,256   test hours (last 7 days of each month): 672
+
+== How well does it predict unseen days? ==
+  Gradient boosting: R-squared 0.893, mean absolute error 246 trips per hour
+  Baseline (hour + day type average): R-squared 0.601, mean absolute error 492 trips per hour
+
+== Which features matter most? (mean |SHAP|, trips per hour) ==
+  Hour of day         662
+  Temperature         306
+  Humidity             88
+  Weekend/holiday      80
+  Month                68
+  Day of week          58
+  Wind speed           53
+  Rain amount          39
+  Cloud cover          25
+  Rain (yes/no)        10
+
+== Do the directions agree with the regression? ==
+  Temperature: correlation between temperature and its SHAP value = +0.90 (positive = warmer pushes demand up)
+  Rain: in rainy hours, the two rain features change the prediction by -202 trips per hour (about -17% of what the model would predict without rain)

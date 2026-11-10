@@ -27,6 +27,12 @@ Advanced Data Science, end-term project. Team: Harshit Kumar, Ishaan Jatain, Him
 | `ssot_sample_1000.csv` | 1,000 random rows of the final dataset (all 41 columns), to preview it without rebuilding |
 | `weather_openmeteo.csv`, `station_information.json` | Saved copies of the downloaded weather and station data, so rebuilds give the same result |
 | `datasets/` | Each non-trip source as a CSV: raw and New York-time hourly weather, NOAA daily records, stations, 2025 holidays |
+| `stage2_eda.py` | Stage 2: data-quality check, `dfSummary` reports, hourly aggregation, EDA charts, holiday description |
+| `stage2_tests.py` | Stage 2: regression and hypothesis tests for H1–H5, robustness checks, verdicts |
+| `stage2_model.py` | Stage 2: gradient boosting model + SHAP explanation (second line of evidence) |
+| `stage3_decisions.py` | Stage 3: demand scenarios and station priority for the rebalancing team |
+| `stage2_summary.md`, `stage3_summary.md` | Plain-language summary of every step and result |
+| `outputs/` | All results: hourly table, test results, dfSummary reports (HTML), scenarios, station priority, charts |
 
 ## How to run
 
@@ -43,7 +49,20 @@ Advanced Data Science, end-term project. Team: Harshit Kumar, Ishaan Jatain, Him
    ```bash
    python build_ssot.py
    ```
-4. Optional, rebuild the earlier draft of the summary PDF:
+4. Run the analysis, in this order (each script reads the previous one's output):
+   ```bash
+   python stage2_eda.py
+   ```
+   ```bash
+   python stage2_tests.py
+   ```
+   ```bash
+   python stage2_model.py
+   ```
+   ```bash
+   python stage3_decisions.py
+   ```
+5. Optional, rebuild the earlier draft of the summary PDF:
    ```bash
    python make_summary_pdf.py
    ```
@@ -54,3 +73,15 @@ Advanced Data Science, end-term project. Team: Harshit Kumar, Ishaan Jatain, Him
 - Weather timestamps converted from UTC to New York time before joining on the trip's start hour.
 - Weather gaps up to 3 hours interpolated; an hour counts as rainy from 0.1 mm.
 - Row count checked to be unchanged after the joins.
+
+## Main results
+
+| Hypothesis | Result | Status |
+|---|---|---|
+| H1 Warmer hours have more trips | +2.5% trips per +1 °C | Supported |
+| H2 Rainy hours have fewer trips (same temperature) | −33% in a rainy hour | Supported |
+| H3 Casual riders more weather-sensitive | Temperature: +4.4% vs +2.1% per °C; rain: −40% vs −31% (overlapping) | Inconclusive |
+| H4 Casual trips are longer | Median 12.4 vs 8.2 minutes | Supported |
+| H5 Weekends: weaker commute peaks, higher casual share | Peak ratio 2.0 vs 0.84; casual share 15% vs 23% | Supported |
+
+Details: [`stage2_summary.md`](stage2_summary.md) and [`stage3_summary.md`](stage3_summary.md).

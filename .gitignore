@@ -19,3 +19,6 @@ __pycache__/
 
 # Downloaded research papers (copyrighted, not ours to publish)
 research papers/
+
+# summarytools scratch images (the dfSummary HTML embeds its own charts)
+tmp/

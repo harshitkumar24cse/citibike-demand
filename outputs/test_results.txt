@@ -1,0 +1,72 @@
+== Main regression: log(trips per hour) on weather + calendar controls ==
+
+Total trips: R-squared 0.930, hours 2928
+  per +1 C             +2.5%   95% CI [+1.8%, +3.2%]   p = 1.64e-12
+  rainy hour          -33.1%   95% CI [-40.9%, -24.2%]   p = 2.18e-10
+  per +1 m/s wind      -3.7%   95% CI [-5.8%, -1.5%]   p = 0.00118
+  per +1% humidity     -0.3%   95% CI [-0.6%, -0.1%]   p = 0.0121
+
+Member trips: R-squared 0.934, hours 2928
+  per +1 C             +2.1%   95% CI [+1.5%, +2.8%]   p = 1.53e-10
+  rainy hour          -31.3%   95% CI [-39.2%, -22.4%]   p = 1.34e-09
+  per +1 m/s wind      -3.5%   95% CI [-5.6%, -1.4%]   p = 0.00127
+  per +1% humidity     -0.3%   95% CI [-0.5%, -0.0%]   p = 0.0219
+
+Casual trips: R-squared 0.904, hours 2928
+  per +1 C             +4.4%   95% CI [+3.4%, +5.3%]   p = 3.07e-20
+  rainy hour          -39.9%   95% CI [-47.4%, -31.3%]   p = 8.01e-14
+  per +1 m/s wind      -4.6%   95% CI [-7.2%, -1.9%]   p = 0.000897
+  per +1% humidity     -0.5%   95% CI [-0.8%, -0.2%]   p = 0.000269
+
+Robustness - total trips, each month separately:
+  April     temp  +3.2% [+2.4, +4.0]   rain  -30.6% [-39.3, -20.5]
+  June      temp  +1.1% [+0.4, +1.8]   rain  -16.8% [-22.8, -10.3]
+  October   temp  +2.2% [+1.7, +2.7]   rain  -42.3% [-50.5, -32.7]
+  December  temp  +8.4% [+5.2, +11.8]   rain  -42.1% [-57.7, -20.7]
+  Working days only: temp +1.9% [+1.3, +2.5]   rain -31.7% [-39.5, -23.0]
+
+== H1: warmer hours have more trips ==
+  Spearman correlation (raw): rho = +0.49, p = 1.05e-172
+  Regression: +2.5% trips per +1 C, 95% CI [+1.8%, +3.2%]
+  Verdict H1: SUPPORTED
+
+== H2: rainy hours have fewer trips than dry hours at similar temperatures ==
+  Raw means: rainy 936 vs dry 1367 trips per hour
+  Welch t-test: t = -9.18, p = 5.02e-19
+  Mann-Whitney U: p = 2.06e-14, rank-biserial r = +0.23
+  Regression (temperature, time and day held fixed): rain -33.1%, 95% CI [-40.9%, -24.2%]
+  Verdict H2: SUPPORTED
+
+== H3: casual riders are more weather-sensitive than members ==
+  per +1 C    members +2.1% [+1.5, +2.8]   casual +4.4% [+3.4, +5.3]
+  rainy hour  members -31.3% [-39.2, -22.4]   casual -39.9% [-47.4, -31.3]
+  Casual temperature effect clearly larger (CIs do not overlap): True
+  Casual rain effect clearly larger (CIs do not overlap): False
+  Verdict H3: INCONCLUSIVE
+
+== H4: casual trips are longer than member trips (trip level) ==
+  Median: casual 12.4 min vs member 8.2 min
+  Mean:   casual 17.4 min vs member 10.8 min
+  Mann-Whitney U (casual > member): p = 0, rank-biserial r = +0.30
+  Cohen's d = 0.60
+  Robustness, working days only: median casual 11.7 vs member 8.1 min
+  Verdict H4: SUPPORTED
+
+== H5: weekends have weaker commute peaks and a higher casual share ==
+  Peak ratio (working days): 2.00  (1.0 = no commute peak)
+  Peak ratio (non-working days): 0.84  (1.0 = no commute peak)
+  Mann-Whitney, trips at 8 am / 5-6 pm, working > non-working: p = 2.18e-22
+  Casual share: working 14.8% vs non-working 23.0%
+  Chi-square: chi2 = 34,954, p = 0, Cramer's V = 0.096
+  Verdict H5: SUPPORTED
+
+== Season effect: does hourly demand differ between the four seasons? ==
+  Median trips per hour: {'autumn': 1485.0, 'spring': 1193.0, 'summer': 1648.5, 'winter': 549.5}
+  Kruskal-Wallis: H = 354.1, p = 1.95e-76, epsilon-squared = 0.120
+
+== Summary of verdicts ==
+  H1 warmer -> more trips                  SUPPORTED
+  H2 rain -> fewer trips                   SUPPORTED
+  H3 casual more weather-sensitive         INCONCLUSIVE
+  H4 casual trips longer                   SUPPORTED
+  H5 weekends: weaker peaks, more casual   SUPPORTED

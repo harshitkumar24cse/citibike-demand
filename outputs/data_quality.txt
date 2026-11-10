@@ -1,0 +1,44 @@
+== Data-quality summary (trip level) ==
+Rows: 3,822,094   columns: 41
+Duplicate ride_id: 0
+Trips per month: {4: 930120, 6: 1187748, 10: 1181673, 12: 522553}
+Member / casual: {'member': 3177895, 'casual': 644199}
+Bike type: {'electric_bike': 2703455, 'classic_bike': 1118639}
+Duration (min): median 8.7, mean 11.9, p95 31.6, max 179.9
+Distance (km): median 1.49, missing 0.29%
+Round trips (same start and end station): 1.93%
+Columns with missing values:
+  end_station_capacity: 4.53%
+  start_station_capacity: 3.36%
+  distance_km: 0.29%
+  avg_speed_kmh: 0.29%
+  end_lat: 0.25%
+  end_lng: 0.25%
+  end_station_id: 0.25%
+  end_station_name: 0.22%
+  start_lat: 0.05%
+  start_station_id: 0.05%
+  start_station_name: 0.05%
+  start_lng: 0.05%
+Saved dfSummary of the trip dataset: outputs/dfsummary_ssot.html
+
+== Hourly demand table ==
+Hours: 2,928  (trips summed: 3,822,094)
+Hours with zero trips: 0
+Trips per hour: mean 1305, median 1110, min 4, max 5021
+Rainy hours (>= 0.1 mm): 421 of 2928 (14.4%)
+Mean trips per hour by season: {'spring': 1292.0, 'summer': 1650.0, 'autumn': 1588.0, 'winter': 702.0}
+Mean temperature by season (C): {'spring': 12.0, 'summer': 23.3, 'autumn': 14.0, 'winter': -0.3}
+
+Holidays (described, not tested):
+  Juneteenth National Independence Day (Thursday): 35,467 trips vs 46,372 on a normal Thursday (-23.5%); casual share 20.7% vs 18.1%; 25.6 C, 7 rainy hours
+  Columbus Day (Monday): 15,291 trips vs 36,360 on a normal Monday (-57.9%); casual share 11.0% vs 13.9%; 13.5 C, 18 rainy hours
+  Christmas Day (Thursday): 6,304 trips vs 24,879 on a normal Thursday (-74.7%); casual share 20.0% vs 9.6%; 1.9 C, 0 rainy hours
+
+Spearman correlation of trips per hour with weather:
+  Temperature: +0.49
+  Wind speed: +0.06
+  Pressure: +0.02
+  Cloud cover: -0.08
+  Precipitation: -0.15
+  Humidity: -0.45

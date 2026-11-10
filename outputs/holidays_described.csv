@@ -1,0 +1,4 @@
+date,holiday,weekday,holiday_trips,normal_day_trips,change_pct,holiday_casual_share_pct,normal_casual_share_pct,holiday_temp_c,holiday_rain_hours
+2025-06-19,Juneteenth National Independence Day,Thursday,35467,46372,-23.5,20.7,18.1,25.6,7
+2025-10-13,Columbus Day,Monday,15291,36360,-57.9,11.0,13.9,13.5,18
+2025-12-25,Christmas Day,Thursday,6304,24879,-74.7,20.0,9.6,1.9,0

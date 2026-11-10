@@ -1,0 +1,48 @@
+== Expected trips per hour, whole system (sample x 4) ==
+moment               Weekday 8 am  Weekday 5 pm  Weekend 2 pm
+weather                                                      
+Warm & dry (25 C)           15744         17857         11895
+Mild & dry (12 C)           10411         11678          7511
+Mild & rainy (12 C)          6328          7060          4461
+Cold & dry (0 C)             5922          6583          4108
+
+Casual share (%):
+moment               Weekday 8 am  Weekday 5 pm  Weekend 2 pm
+weather                                                      
+Warm & dry (25 C)            11.5          15.2          26.6
+Mild & dry (12 C)             8.4          11.3          20.6
+Mild & rainy (12 C)           7.0           9.4          17.4
+Cold & dry (0 C)              6.0           8.1          15.2
+
+Weekend 2 pm: warm & dry 11,895 vs cold & dry 4,108 trips per hour (2.9x as many)
+Weekday 8 am at 12 C: rainy 6,328 vs dry 10,411 trips per hour (-39%)
+
+== Stations that empty fastest on working-day mornings (7-10 am), whole system ==
+                                               name  capacity  trips_per_day  net_bikes_lost_per_morning  lost_vs_capacity_pct
+start_station_id                                                                                                              
+6756.01                            W 43 St & 10 Ave     117.0          278.0                        60.0                  51.0
+6230.04                         FDR Drive & E 35 St     123.0          189.0                        46.0                  38.0
+5335.07           Grand St & Samuel Dickstein Plaza      81.0          140.0                        44.0                  54.0
+7183.03                    Riverside Blvd & W 67 St      79.0          183.0                        43.0                  55.0
+6756.05                            W 44 St & 11 Ave      79.0          201.0                        41.0                  52.0
+5515.02                              E 2 St & Ave B      85.0          205.0                        40.0                  47.0
+5626.15                              1 Ave & E 6 St      94.0          198.0                        39.0                  42.0
+5847.01               Christopher St & Greenwich St       NaN          261.0                        38.0                   NaN
+7023.04                            W 59 St & 10 Ave     117.0          184.0                        37.0                  32.0
+5886.13                            E 20 St & FDR Dr      75.0          194.0                        37.0                  49.0
+
+Stations losing at least half their capacity in one morning: 45
+
+== Stations that fill fastest on working-day mornings (negative = more bikes arrive) ==
+                                           name  capacity  trips_per_day  net_bikes_lost_per_morning  lost_vs_capacity_pct
+start_station_id                                                                                                          
+6584.12                      E 47 St & Park Ave      81.0          186.0                       -92.0                -114.0
+6492.08                         9 Ave & W 33 St      94.0          374.0                       -85.0                 -91.0
+6173.08                      Broadway & W 25 St     109.0          330.0                       -69.0                 -63.0
+4804.02                 Dock 72 Way & Market St      22.0           63.0                       -61.0                -279.0
+6474.11                         E 40 St & 5 Ave      93.0          212.0                       -59.0                 -63.0
+6432.11                      E 40 St & Park Ave     123.0          156.0                       -56.0                 -45.0
+6659.01                 E 51 St & Lexington Ave      75.0          101.0                       -52.0                 -69.0
+6691.11                         E 56 St & 3 Ave      79.0          146.0                       -51.0                 -65.0
+5470.12           North Moore St & Greenwich St      29.0          184.0                       -50.0                -174.0
+5470.10                Greenwich St & Hubert St      35.0          105.0                       -50.0                -144.0

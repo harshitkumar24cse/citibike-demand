@@ -1,0 +1,13 @@
+weather,moment,member_trips,casual_trips,total_trips,casual_share_pct
+Warm & dry (25 C),Weekday 8 am,13940,1804,15744,11.5
+Warm & dry (25 C),Weekday 5 pm,15142,2715,17857,15.2
+Warm & dry (25 C),Weekend 2 pm,8727,3167,11895,26.6
+Mild & dry (12 C),Weekday 8 am,9532,879,10411,8.4
+Mild & dry (12 C),Weekday 5 pm,10354,1323,11678,11.3
+Mild & dry (12 C),Weekend 2 pm,5967,1544,7511,20.6
+Mild & rainy (12 C),Weekday 8 am,5887,441,6328,7.0
+Mild & rainy (12 C),Weekday 5 pm,6395,665,7060,9.4
+Mild & rainy (12 C),Weekend 2 pm,3685,776,4461,17.4
+Cold & dry (0 C),Weekday 8 am,5569,353,5922,6.0
+Cold & dry (0 C),Weekday 5 pm,6050,533,6583,8.1
+Cold & dry (0 C),Weekend 2 pm,3486,623,4108,15.2
