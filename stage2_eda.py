@@ -78,8 +78,9 @@ for c, v in miss[miss > 0].items():
     log(f"  {c}: {v:.2%}")
 
 # dfSummary: one table with type, missing values, distinct values and a mini chart per column
+ssot_summary = dfSummary(trips)
 with open(os.path.join(OUT, "dfsummary_ssot.html"), "w", encoding="utf-8") as fh:
-    fh.write(dfSummary(trips).to_html())
+    fh.write(ssot_summary.to_html())
 log("Saved dfSummary of the trip dataset: outputs/dfsummary_ssot.html")
 
 # ----------------------------- 3. HOURLY AGGREGATION ---------------------------
@@ -103,8 +104,9 @@ hourly["is_rush_hour"] = ((hourly["is_non_working_day"] == 0) &
                           hourly["hour"].isin([7, 8, 9, 16, 17, 18, 19])).astype(int)
 hourly = hourly.reset_index().rename(columns={"index": "hour_ts"})
 hourly.to_csv(os.path.join(OUT, "hourly_demand.csv"), index=False)
+hourly_summary = dfSummary(hourly)
 with open(os.path.join(OUT, "dfsummary_hourly.html"), "w", encoding="utf-8") as fh:
-    fh.write(dfSummary(hourly).to_html())
+    fh.write(hourly_summary.to_html())
 
 log("\n== Hourly demand table ==")
 log(f"Hours: {len(hourly):,}  (trips summed: {hourly['total_trips'].sum():,})")
