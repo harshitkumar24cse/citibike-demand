@@ -1,6 +1,6 @@
 # Decoding Citi Bike Demand: The Impact of Weather, Seasonality and Holidays in NYC
 
-Advanced Data Science, end-term project. Team: Harshit Kumar, Ishaan Jatain, Himanshu Yadav.
+Advanced Data Science, end-term project. Team: Harshit Kumar, Ishaan Jatain, Himanshu Yadav, Hrash.
 
 **Question:** how much do weather, season and holidays change hourly Citi Bike demand in New York City, and do members and casual riders respond differently? The stakeholder is the Citi Bike operations and rebalancing team.
 
