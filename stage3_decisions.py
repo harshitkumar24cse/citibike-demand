@@ -38,10 +38,10 @@ for col in ["member_trips", "casual_trips"]:
     hourly["log_" + col] = np.log(hourly[col] + 1)
 
 # same regression as stage2_tests.py, so the numbers match the hypothesis results
-FORMULA = ("{y} ~ temp_c + is_raining + wind_speed_ms + humidity_pct"
-           " + C(hour) * is_non_working_day + C(day_of_week) + C(month)")
-members = smf.ols(FORMULA.format(y="log_member_trips"), data=hourly).fit()
-casual = smf.ols(FORMULA.format(y="log_casual_trips"), data=hourly).fit()
+WEATHER = "temp_c + is_raining + wind_speed_ms + humidity_pct"
+CONTROLS = "C(hour) * is_non_working_day + C(day_of_week) + C(month)"
+members = smf.ols("log_member_trips ~ " + WEATHER + " + " + CONTROLS, data=hourly).fit()
+casual = smf.ols("log_casual_trips ~ " + WEATHER + " + " + CONTROLS, data=hourly).fit()
 
 # typical conditions; wind and humidity are set to their usual values for each case
 weather = {

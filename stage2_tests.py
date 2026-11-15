@@ -45,14 +45,15 @@ for col in ["total_trips", "member_trips", "casual_trips"]:
     hourly["log_" + col] = np.log(hourly[col] + 1)
 
 # ----------------------------- MAIN REGRESSION --------------------------------
-# weather variables + controls for time of day, day type, weekday and month
-# is_non_working_day already includes holidays, so no separate holiday term
-FORMULA = ("{y} ~ temp_c + is_raining + wind_speed_ms + humidity_pct"
-           " + C(hour) * is_non_working_day + C(day_of_week) + C(month)")
+# the weather variables we test, and the calendar controls we hold fixed
+# (is_non_working_day already includes holidays, so there is no separate holiday term)
+WEATHER = "temp_c + is_raining + wind_speed_ms + humidity_pct"
+CONTROLS = "C(hour) * is_non_working_day + C(day_of_week) + C(month)"
 
 
-def fit(y, data):
-    model = smf.ols(FORMULA.format(y=y), data=data)
+def fit(formula, data):
+    """Ordinary least squares with Newey-West (HAC) standard errors."""
+    model = smf.ols(formula, data=data)
     return model.fit(cov_type="HAC", cov_kwds={"maxlags": 24})
 
 
@@ -64,9 +65,9 @@ def effect(res, var):
 
 
 log("== Main regression: log(trips per hour) on weather + calendar controls ==")
-models = {"total": fit("log_total_trips", hourly),
-          "member": fit("log_member_trips", hourly),
-          "casual": fit("log_casual_trips", hourly)}
+models = {"total": fit("log_total_trips ~ " + WEATHER + " + " + CONTROLS, hourly),
+          "member": fit("log_member_trips ~ " + WEATHER + " + " + CONTROLS, hourly),
+          "casual": fit("log_casual_trips ~ " + WEATHER + " + " + CONTROLS, hourly)}
 rows = []
 for name, res in models.items():
     log(f"\n{name.title()} trips: R-squared {res.rsquared:.3f}, hours {int(res.nobs)}")
@@ -83,8 +84,8 @@ log("\nRobustness - total trips, each month separately:")
 monthly = {}
 for m, season in [(4, "April"), (6, "June"), (10, "October"), (12, "December")]:
     sub = hourly[hourly["month"] == m]
-    res = smf.ols(FORMULA.format(y="log_total_trips").replace(" + C(month)", ""), data=sub).fit(
-        cov_type="HAC", cov_kwds={"maxlags": 24})
+    # one month only, so there is no month control
+    res = fit("log_total_trips ~ " + WEATHER + " + C(hour) * is_non_working_day + C(day_of_week)", sub)
     t = effect(res, "temp_c")
     r = effect(res, "is_raining")
     monthly[m] = (t, r)
@@ -92,8 +93,9 @@ for m, season in [(4, "April"), (6, "June"), (10, "October"), (12, "December")]:
         f"rain {r[0]:+6.1f}% [{r[1]:+.1f}, {r[2]:+.1f}]")
 
 # robustness: working days only
-res_wd = smf.ols(FORMULA.format(y="log_total_trips").replace(" + C(hour) * is_non_working_day", " + C(hour)"),
-                 data=hourly[hourly["is_non_working_day"] == 0]).fit(cov_type="HAC", cov_kwds={"maxlags": 24})
+# working days only, so the day-type control is no longer needed
+working_days = hourly[hourly["is_non_working_day"] == 0]
+res_wd = fit("log_total_trips ~ " + WEATHER + " + C(hour) + C(day_of_week) + C(month)", working_days)
 twd, rwd = effect(res_wd, "temp_c"), effect(res_wd, "is_raining")
 log(f"  Working days only: temp {twd[0]:+.1f}% [{twd[1]:+.1f}, {twd[2]:+.1f}]   "
     f"rain {rwd[0]:+.1f}% [{rwd[1]:+.1f}, {rwd[2]:+.1f}]")

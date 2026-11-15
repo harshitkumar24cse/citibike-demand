@@ -27,6 +27,7 @@ Advanced Data Science, end-term project. Team: Harshit Kumar, Ishaan Jatain, Him
 | `ssot_sample_1000.csv` | 1,000 random rows of the final dataset (all 41 columns), to preview it without rebuilding |
 | `weather_openmeteo.csv`, `station_information.json` | Saved copies of the downloaded weather and station data, so rebuilds give the same result |
 | `datasets/` | Each non-trip source as a CSV: raw and New York-time hourly weather, NOAA daily records, stations, 2025 holidays |
+| `Group_14_Final_Project.ipynb` | The whole analysis in one notebook, step by step with explanations and charts (same code as the scripts below) |
 | `stage2_eda.py` | Stage 2: data-quality check, `dfSummary` reports, hourly aggregation, EDA charts, holiday description |
 | `stage2_tests.py` | Stage 2: regression and hypothesis tests for H1–H5, robustness checks, verdicts |
 | `stage2_model.py` | Stage 2: gradient boosting model + SHAP explanation (second line of evidence) |
